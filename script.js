@@ -15,23 +15,38 @@ function sendMessage() {
 }
 
 function addMessage(text, sender) {
-    const msg = document.createElement("div");
-    msg.className = "message " + sender;
-    msg.innerHTML = text;
-    chatBox.appendChild(msg);
+    const div = document.createElement("div");
+    div.className = "message " + sender;
+    div.innerHTML = text;
+    chatBox.appendChild(div);
+
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function botReply(userText) {
-    let reply = "That's interesting ❤️ Tell me more.";
+function botReply(message) {
 
-    if (userText.toLowerCase().includes("hi")) {
-        reply = "Hey babe ❤️ How are you today?";
+    let reply = "Aww ❤️ Tell me more.";
+
+    const msg = message.toLowerCase();
+
+    if(msg.includes("hi") || msg.includes("hello")){
+        reply = "Hey babe ❤️ Khana khais? 🍛😊";
+    }
+    else if(msg.includes("love")){
+        reply = "I'm happy to spend time chatting with you. ❤️";
+    }
+    else if(msg.includes("sad")){
+        reply = "I'm sorry you're having a tough time. 💙 I'm here to listen.";
+    }
+    else if(msg.includes("good night")){
+        reply = "Good night, babe. 😘❤️ Sleep well. 'Every new sunrise is another chance to smile.' 🤗";
     }
 
-    if (userText.toLowerCase().includes("love")) {
-        reply = "You're special to me in this roleplay. ❤️";
-    }
-
-    addMessage(reply, "bot");
+    addMessage(reply,"bot");
 }
+
+input.addEventListener("keypress",function(e){
+    if(e.key==="Enter"){
+        sendMessage();
+    }
+});
